@@ -1,5 +1,5 @@
-# gandalf
-Secure password manager and password collection.
+# You Shall Not Pass
+Secure password manager and password collection. You Shall not Pass is a project name, official app name will need to be decided on later.
 
 ## Tech Stack
 The current languages in use in this project are: 
