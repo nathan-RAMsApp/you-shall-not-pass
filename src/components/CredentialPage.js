@@ -12,7 +12,8 @@ export default function CredentialPage() {
             const result = await getFromJSON(
                 "../DEMO_DATA/CREDENTIALS.json",
                 ["id", "company", "provider", "username", "login-successful"],
-                parseInt(credentialID)
+                parseInt(credentialID),
+                "id"
             );
             setCredential(result);
         };
@@ -59,10 +60,33 @@ export default function CredentialPage() {
                     value="********"
                     disabled
                 ></input>
-                <button id="show-password-button" className="btn">
+                <button
+                    id="show-password-button"
+                    className="btn"
+                    onClick={() => showPassword(credentialID)}
+                >
                     Show password
                 </button>
             </div>
         </div>
     );
+}
+
+async function showPassword(credentialID) {
+    const passwordField = document.getElementById("credential-password");
+
+    const password = await getFromJSON(
+        "../DEMO_DATA/PASSWORDS.json",
+        ["password", "unique_id"],
+        parseInt(credentialID),
+        "credential_id"
+    ).then((data) => (passwordField.value = data.password));
+
+    setTimeout(hidePassword, 5000);
+}
+
+async function hidePassword() {
+    const passwordField = document.getElementById("credential-password");
+
+    passwordField.value = "********";
 }
