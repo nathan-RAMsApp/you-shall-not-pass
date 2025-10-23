@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import CredentialsContext from "../context/CredentialsContext";
 import { getFromJSON } from "../utilities/jsonLikeSQL";
+import "../styles/credentialPage.css";
 
 export default function CredentialPage() {
     const { credentialID } = useParams();
@@ -23,8 +24,14 @@ export default function CredentialPage() {
 
     return (
         <div className="credential-card card container">
-            <h2>{credential.company}</h2>
-            <p className="credential-provider">{credential.provider}</p>
+            <img
+                src="../images/close.svg"
+                alt="Close credential"
+                className="close-btn"
+            />
+
+            <h1>{credential.company}</h1>
+            <h2 className="credential-provider">{credential.provider}</h2>
             <div className="credential-details">
                 <label htmlFor="username">Username:</label>
                 <input
@@ -33,6 +40,7 @@ export default function CredentialPage() {
                     value={credential.username}
                     disabled
                 ></input>
+                <br />
                 <label htmlFor="password">Password:</label>
                 <input
                     id="credential-password"
@@ -41,6 +49,9 @@ export default function CredentialPage() {
                     value="********"
                     disabled
                 ></input>
+                <button id="show-password-button" className="btn">
+                    Show password
+                </button>
             </div>
         </div>
     );

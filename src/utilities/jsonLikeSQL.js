@@ -1,3 +1,5 @@
+/*This module provides a function to fetch and filter JSON data similar to SQL queries. Purely to be used while testing a front end without the backend implemented yet.*/
+
 export async function getFromJSON(path, fields, id = null) {
     try {
         const response = await fetch(path);

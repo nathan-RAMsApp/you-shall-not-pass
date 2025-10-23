@@ -69,3 +69,26 @@
 .credential-status.failed {
   background: red;
 }
+
+.btn:hover {
+  background-color: rgb(240, 240, 240);
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  width: 30px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.close-btn:hover {
+  cursor: pointer;
+  background-color: rgb(240, 240, 240);
+}
+
+.credential-card {
+  position: relative; /* positioning context for absolutely positioned children */
+}
