@@ -3,17 +3,17 @@
   "name": "You Shall Not Pass - Password Manager",
   "icons": [
     {
-      "src": "logo_16.png",
+      "src": "images/logo_16.png",
       "type": "image/png",
       "sizes": "16x16"
     },
     {
-      "src": "logo_128.png",
+      "src": "images/logo_128.png",
       "type": "image/png",
       "sizes": "128x128"
     },
     {
-      "src": "logo_512.png",
+      "src": "images/logo_512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
