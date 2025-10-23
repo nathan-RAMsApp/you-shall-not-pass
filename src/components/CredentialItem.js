@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router";
 
 export default function CredentialItem({ credential }) {
-    console.log(credential["login-successful"]);
     var credentialStatus = credential["login-successful"]
         ? "success"
         : "failed";

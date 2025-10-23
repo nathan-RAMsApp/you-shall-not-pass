@@ -12,7 +12,7 @@ export default function CredentialPage() {
         const fetchCredential = async () => {
             const result = await getFromJSON(
                 "../DEMO_DATA/CREDENTIALS.json",
-                ["id", "company", "provider", "username"],
+                ["id", "company", "provider", "username", "login-successful"],
                 parseInt(credentialID)
             );
             setCredential(result);
@@ -54,6 +54,16 @@ export default function CredentialPage() {
                 <button id="show-password-button" className="btn">
                     Show password
                 </button>
+                {!credential["login-successful"] && (
+                    <div className="login-failed-warning warning container">
+                        <h3>Warning</h3>
+                        <p className="error-message">
+                            This credential wasn't accepted last time it was
+                            used. We may need to collect this from the user
+                            again.
+                        </p>
+                    </div>
+                )}
             </div>
         </div>
     );
