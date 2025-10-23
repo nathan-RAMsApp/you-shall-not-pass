@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import CredentialsGrid from "./components/CredentialsGrid";
+import InfoComponent from "./components/InfoComponent";
 import "./App.css";
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
             <Header />
             <main>
                 <div className="container">
-                    <h1>Welcome!</h1>
+                    <InfoComponent />
                     <CredentialsGrid />
                 </div>
             </main>
