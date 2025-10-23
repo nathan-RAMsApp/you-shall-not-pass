@@ -1,6 +1,8 @@
 {
   "name": "you-shall-not-pass",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "homepage": "https://nathan-RAMsApp.github.io/you-shall-not-pass",
+  "description": "A React app to manage and display credentials securely.",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
