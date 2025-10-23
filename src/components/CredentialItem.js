@@ -7,7 +7,12 @@ export default function CredentialItem({ credential }) {
         : "failed";
 
     return (
-        <div className="credential-item card container">
+        <div
+            className="credential-item card container"
+            onClick={() =>
+                (window.location.href = `credential/${credential.id}`)
+            }
+        >
             <div className="credential-company container">
                 <h2>{credential.company}</h2>
             </div>
