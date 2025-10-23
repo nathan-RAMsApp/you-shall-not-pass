@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
 import CredentialsContext from "../context/CredentialsContext";
 import { getFromJSON } from "../utilities/jsonLikeSQL";
 import "../styles/credentialPage.css";
@@ -24,11 +24,13 @@ export default function CredentialPage() {
 
     return (
         <div className="credential-card card container">
-            <img
-                src="../images/close.svg"
-                alt="Close credential"
-                className="close-btn"
-            />
+            <Link to="/">
+                <img
+                    src="../images/close.svg"
+                    alt="Close credential"
+                    className="close-btn"
+                />
+            </Link>
 
             <h1>{credential.company}</h1>
             <h2 className="credential-provider">{credential.provider}</h2>
