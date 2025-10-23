@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
-import CredentialsContext from "../context/CredentialsContext";
 import { getFromJSON } from "../utilities/jsonLikeSQL";
 import "../styles/credentialPage.css";
 
@@ -34,6 +33,15 @@ export default function CredentialPage() {
 
             <h1>{credential.company}</h1>
             <h2 className="credential-provider">{credential.provider}</h2>
+            {!credential["login-successful"] && (
+                <div className="login-failed-warning warning container">
+                    <h3>Warning</h3>
+                    <p className="error-message">
+                        This credential wasn't accepted last time it was used.
+                        We may need to collect this from the user again.
+                    </p>
+                </div>
+            )}
             <div className="credential-details">
                 <label htmlFor="username">Username:</label>
                 <input
@@ -54,16 +62,6 @@ export default function CredentialPage() {
                 <button id="show-password-button" className="btn">
                     Show password
                 </button>
-                {!credential["login-successful"] && (
-                    <div className="login-failed-warning warning container">
-                        <h3>Warning</h3>
-                        <p className="error-message">
-                            This credential wasn't accepted last time it was
-                            used. We may need to collect this from the user
-                            again.
-                        </p>
-                    </div>
-                )}
             </div>
         </div>
     );
