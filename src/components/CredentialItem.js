@@ -7,7 +7,10 @@ export default function CredentialItem({ credential }) {
         : "failed";
 
     return (
-        <Link to={`/credential/${credential.id}`}>
+        <Link
+            to={`/credential/${credential.id}`}
+            style={{ textDecoration: "none" }}
+        >
             <div className="credential-item card container">
                 <div className="credential-company container">
                     <h2>{credential.company}</h2>

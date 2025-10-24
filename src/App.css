@@ -36,12 +36,12 @@
 }
 
 .credential-item a {
-  text-decoration: none;
+  text-decoration: none !important;
   color: inherit;
 }
 
 .credential-item * {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .credential-item:hover {
@@ -84,20 +84,3 @@
   cursor: pointer;
 }
 
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 18px;
-  width: 30px;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-.close-btn:hover {
-  cursor: pointer;
-  background-color: rgb(240, 240, 240);
-}
-
-.credential-card {
-  position: relative; /* positioning context for absolutely positioned children */
-}
