@@ -2,8 +2,7 @@ import Header from "./components/Header";
 import CredentialsGrid from "./components/CredentialsGrid";
 import InfoComponent from "./components/InfoComponent";
 import "./App.css";
-//import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router";
+import { BrowserRouter as Router, Routes, Route } from "react-router";
 import CredentialPage from "./components/CredentialPage";
 import CredentialsContext from "./context/CredentialsContext";
 
@@ -36,10 +35,6 @@ function Home() {
             </main>
         </div>
     );
-}
-
-function viewCredential({ credentialID }) {
-    return <CredentialPage credentialID={credentialID} />;
 }
 
 export default App;

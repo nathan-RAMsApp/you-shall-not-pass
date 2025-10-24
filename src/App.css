@@ -35,6 +35,15 @@
   position: relative;  /* Add this to make it the positioning context */
 }
 
+.credential-item a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.credential-item * {
+  text-decoration: none !important;
+}
+
 .credential-item:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -69,3 +78,9 @@
 .credential-status.failed {
   background: red;
 }
+
+.btn:hover {
+  background-color: rgb(240, 240, 240);
+  cursor: pointer;
+}
+
