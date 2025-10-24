@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { getFromJSON } from "../utilities/jsonLikeSQL";
 import "../styles/credentialPage.css";
 
 export default function CredentialPage() {
+    const navigate = useNavigate();
     const { credentialID } = useParams();
     const [credential, setCredential] = useState(null);
     const [editMode, setEditMode] = useState(false);
@@ -11,6 +13,8 @@ export default function CredentialPage() {
     // added local input state
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("********");
+
+    const hideTimeoutRef = useRef(null); // changed: track any hidePassword timeout
 
     useEffect(() => {
         const fetchCredential = async () => {
@@ -31,7 +35,16 @@ export default function CredentialPage() {
     if (!credential) return <div>Loading...</div>;
 
     function toggleEditMode() {
-        showPassword(credentialID, false).then(setEditMode(!editMode));
+        // cancel any pending auto-hide timeout before toggling edit mode
+        if (hideTimeoutRef.current) {
+            clearTimeout(hideTimeoutRef.current);
+            hideTimeoutRef.current = null;
+        }
+
+        // call showPassword and toggle edit mode after it resolves
+        showPassword(credentialID, false).then(() =>
+            setEditMode((prev) => !prev)
+        );
     }
 
     function cancelEdit() {
@@ -39,6 +52,19 @@ export default function CredentialPage() {
         setUsername(credential.username);
         setPassword("********");
         setEditMode(false);
+    }
+
+    function saveChanges() {
+        //should issue a save request to backend API
+        //for now, just exit edit mode
+        setEditMode(false);
+    }
+
+    function deleteCredential() {
+        //should issue a delete request to backend API
+        //for now, just navigate back to main page
+        console.log("Credential not deleted until backend is connected.");
+        navigate("/");
     }
 
     // moved inside component so it can set password state
@@ -52,7 +78,14 @@ export default function CredentialPage() {
             );
             setPassword(data?.password ?? "");
             if (autoHide) {
-                setTimeout(hidePassword, 5000);
+                // clear any existing timeout then set a new one
+                if (hideTimeoutRef.current) {
+                    clearTimeout(hideTimeoutRef.current);
+                }
+                hideTimeoutRef.current = setTimeout(() => {
+                    hidePassword();
+                    hideTimeoutRef.current = null;
+                }, 5000);
             }
         } catch (e) {
             // handle error (do not log sensitive data)
@@ -61,6 +94,10 @@ export default function CredentialPage() {
     }
 
     function hidePassword() {
+        if (hideTimeoutRef.current) {
+            clearTimeout(hideTimeoutRef.current);
+            hideTimeoutRef.current = null;
+        }
         setPassword("********");
     }
 
@@ -77,6 +114,7 @@ export default function CredentialPage() {
                     src="../images/delete.svg"
                     alt="Delete credential"
                     className="action-btn"
+                    onClick={deleteCredential}
                 />
                 <Link to="/">
                     <img
