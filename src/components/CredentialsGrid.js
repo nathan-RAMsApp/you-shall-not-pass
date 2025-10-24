@@ -27,6 +27,8 @@ export default function CredentialsGrid() {
         <div className="credentials-grid container">
             <div className="container credentials-search">
                 <input
+                    name="search-credentials"
+                    id="search-credentials"
                     type="search"
                     className="search-input"
                     placeholder="Search credentials..."

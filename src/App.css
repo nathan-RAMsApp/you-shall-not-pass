@@ -5,10 +5,21 @@
 .info-component {
   margin-top: 40px;
   margin-bottom: 40px;
+  text-align: center;
 }
 
 .info-component h1 {
   margin-bottom: 20px;
+}
+
+.info-component {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#search-credentials {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .credentials-grid {
@@ -21,17 +32,21 @@
 }
 
 .credentials-search input {
-  width: 90%;
+  width: 100%;
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .credential-item {
   margin: 10px;
   padding: 10px;
   width: 300px;
+  height: 200px;
+  text-align: center;
   position: relative;  /* Add this to make it the positioning context */
 }
 
@@ -51,10 +66,13 @@
 
 .credential-company {
   height: 80%;
+  padding-left: 0px;
+  padding-right: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* flex-direction: column; */
+  text-align: center;
+  overflow: hidden;
 }
 
 .credential-desc p {

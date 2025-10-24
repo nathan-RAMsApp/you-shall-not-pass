@@ -1,0 +1,35 @@
+.navbar img {
+    height: 20px;
+}
+
+.navbar .nav-section {
+    display: inline-flex;   /* let the section size to its contents */
+    flex: 0 0 auto;         /* prevent it from growing to fill the navbar */
+    justify-content: center;
+    align-items: right;
+    padding: 5px;
+    width: auto;
+    white-space: nowrap;    /* keep items on one line */
+    align-items: right;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    border-radius: 5px;
+
+}
+
+.navbar .nav-section:hover {
+    background-color: rgb(67, 67, 67);
+    cursor: pointer;
+}
+
+.nav-section #add-icon {
+    margin: 5px;
+    position: relative;
+    top: -2px; /*Shift the element up by 2 pixels to account for image whitespace*/
+}
+.navbar {
+    color: white;
+}
+

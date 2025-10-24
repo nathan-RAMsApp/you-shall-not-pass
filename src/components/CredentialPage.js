@@ -3,8 +3,12 @@ import { useParams, Link } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { getFromJSON } from "../utilities/jsonLikeSQL";
 import "../styles/credentialPage.css";
+import CredentialForm from "./CredentialForm.js";
 
-export default function CredentialPage() {
+export default function CredentialPage({
+    method = "view",
+    credentialState = null,
+}) {
     const navigate = useNavigate();
     const { credentialID } = useParams();
     const [credential, setCredential] = useState(null);
@@ -15,6 +19,7 @@ export default function CredentialPage() {
     const [password, setPassword] = useState("********");
     const [company, setCompany] = useState("");
     const [provider, setProvider] = useState("");
+    const [successful, setSuccessful] = useState(false);
 
     const hideTimeoutRef = useRef(null); // changed: track any hidePassword timeout
 
@@ -32,6 +37,7 @@ export default function CredentialPage() {
             setPassword("********");
             setCompany(result?.company ?? "");
             setProvider(result?.provider ?? "");
+            setSuccessful(result?.["login-successful"] ?? false);
         };
         fetchCredential();
     }, [credentialID]);
@@ -57,6 +63,7 @@ export default function CredentialPage() {
         setPassword("********");
         setCompany(credential.company);
         setProvider(credential.provider);
+        setSuccessful(credential["login-success"]);
         setEditMode(false);
     }
 
@@ -145,7 +152,7 @@ export default function CredentialPage() {
 
             <h1>{credential.company}</h1>
             <h2 className="credential-provider">{credential.provider}</h2>
-            {!credential["login-successful"] && (
+            {!successful && (
                 <div className="login-failed-warning warning container">
                     <h3>Warning</h3>
                     <p className="error-message">
@@ -208,6 +215,16 @@ export default function CredentialPage() {
                         Show password
                     </button>
                 )}
+                <label type="text" htmlFor="successful">
+                    Successful?
+                </label>
+                <input
+                    type="checkbox"
+                    name="successful"
+                    checked={successful}
+                    onChange={(e) => setSuccessful(e.target.checked)}
+                    disabled={!editMode}
+                />
             </div>
             {editMode && (
                 <div className="credential-edit-actions container">
