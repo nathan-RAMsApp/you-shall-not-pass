@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/you-shall-not-pass/static/css/main.25b9088a.css",
+    "main.js": "/you-shall-not-pass/static/js/main.11ad02ed.js",
+    "static/js/453.e391113d.chunk.js": "/you-shall-not-pass/static/js/453.e391113d.chunk.js",
+    "index.html": "/you-shall-not-pass/index.html",
+    "main.25b9088a.css.map": "/you-shall-not-pass/static/css/main.25b9088a.css.map",
+    "main.11ad02ed.js.map": "/you-shall-not-pass/static/js/main.11ad02ed.js.map",
+    "453.e391113d.chunk.js.map": "/you-shall-not-pass/static/js/453.e391113d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.25b9088a.css",
+    "static/js/main.11ad02ed.js"
+  ]
+}
