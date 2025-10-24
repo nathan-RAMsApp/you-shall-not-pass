@@ -13,6 +13,8 @@ export default function CredentialPage() {
     // added local input state
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("********");
+    const [company, setCompany] = useState("");
+    const [provider, setProvider] = useState("");
 
     const hideTimeoutRef = useRef(null); // changed: track any hidePassword timeout
 
@@ -28,6 +30,8 @@ export default function CredentialPage() {
             // initialize local inputs from fetched credential
             setUsername(result?.username ?? "");
             setPassword("********");
+            setCompany(result?.company ?? "");
+            setProvider(result?.provider ?? "");
         };
         fetchCredential();
     }, [credentialID]);
@@ -51,12 +55,26 @@ export default function CredentialPage() {
         // reset local state to original credential values
         setUsername(credential.username);
         setPassword("********");
+        setCompany(credential.company);
+        setProvider(credential.provider);
         setEditMode(false);
     }
 
     function saveChanges() {
         //should issue a save request to backend API
         //for now, just exit edit mode
+
+        //updating the credential state locally
+        //keep this after connecting backend so changes are visible immediately
+        //no need to make another fetch
+        setCredential((prev) => ({
+            ...prev,
+            username: username,
+            company: company,
+            provider: provider,
+            // do not update password in credential object for security, password should be sent to the server only.
+        }));
+        console.log("Changes not saved until backend is connected.");
         setEditMode(false);
     }
 
@@ -138,6 +156,30 @@ export default function CredentialPage() {
             )}
 
             <div className="credential-details">
+                {editMode && (
+                    <>
+                        <label type="text" htmlFor="company">
+                            Company:
+                        </label>
+                        <input
+                            id="credential-company"
+                            type="text"
+                            name="company"
+                            value={company}
+                            onChange={(e) => setCompany(e.target.value)}
+                        />
+                        <label type="text" htmlFor="provider">
+                            Provider:
+                        </label>
+                        <input
+                            id="credential-provider"
+                            type="text"
+                            name="provider"
+                            value={provider}
+                            onChange={(e) => setProvider(e.target.value)}
+                        />
+                    </>
+                )}
                 <label htmlFor="username">Username:</label>
                 <input
                     id="credential-username"
@@ -169,7 +211,9 @@ export default function CredentialPage() {
             </div>
             {editMode && (
                 <div className="credential-edit-actions container">
-                    <button className="btn save-btn">Save changes</button>
+                    <button className="btn save-btn" onClick={saveChanges}>
+                        Save changes
+                    </button>
                     <button className="btn cancel-btn" onClick={cancelEdit}>
                         Cancel
                     </button>
