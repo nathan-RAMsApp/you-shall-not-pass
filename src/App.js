@@ -5,7 +5,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import CredentialPage from "./components/CredentialPage";
 import CredentialsContext from "./context/CredentialsContext";
-import CredentialForm from "./components/CredentialForm";
+import CreateCredential from "./components/CreateCredential";
 
 function App() {
     return (
@@ -20,7 +20,7 @@ function App() {
                     />
                     <Route
                         path="/create"
-                        element={<CredentialForm method="create" />}
+                        element={<CreateCredential />}
                     ></Route>
                 </Routes>
             </CredentialsContext.Provider>
