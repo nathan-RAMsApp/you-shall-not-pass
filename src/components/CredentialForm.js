@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, useParams, Link } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getFromJSON } from "../utilities/jsonLikeSQL";
 import "../styles/credentialForm.css";
 
@@ -146,12 +146,16 @@ export default function CredentialForm({
                 "Are you sure you want to cancel? All changes will be lost."
             ) === true
         ) {
-            setUsername(credential.username);
-            setPassword("********");
-            setCompany(credential.company);
-            setProvider(credential.provider);
-            setSuccessful(credential["login-successful"]);
-            setEditMode(false);
+            if (method === "edit") {
+                setUsername(credential.username);
+                setPassword("********");
+                setCompany(credential.company);
+                setProvider(credential.provider);
+                setSuccessful(credential["login-successful"]);
+                setEditMode(false);
+            } else if (method === "create") {
+                return navigate("/");
+            }
         }
     }
 
@@ -207,7 +211,7 @@ export default function CredentialForm({
                     type="text"
                     name="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.checked)}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 {!editMode && (
                     <button
