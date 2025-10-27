@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CredentialForm from "./CredentialForm";
+import "../styles/createCredential.css";
 
 export default function CreateCredential() {
     const [credential, setCredential] = useState({});
@@ -7,7 +8,17 @@ export default function CreateCredential() {
 
     return (
         <div className="create-credential container">
-            <h2>Add a new credential</h2>
+            <div className="info-container container">
+                <h2>Add a new credential</h2>
+                <p>
+                    Fill in all the details in the form below to save a new
+                    credential.
+                </p>
+                <p>
+                    Make sure the credential isn't saved elsewhere in CRM, if it
+                    is be sure to delete these once this saved.
+                </p>
+            </div>
             <CredentialForm
                 method="create"
                 credential={credential}

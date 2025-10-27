@@ -135,8 +135,14 @@ export default function CredentialForm({
             provider: provider,
             // do not update password in credential object for security, password should be sent to the server only.
         }));
+
         console.log("Changes not saved until backend is connected.");
-        setEditMode(false);
+        if (method === "edit") {
+            setEditMode(false);
+        } else {
+            //ideally navigate to the new credentials page - requires the create request to return the ID
+            return navigate("/");
+        }
     }
 
     function cancelEdit() {
@@ -160,11 +166,7 @@ export default function CredentialForm({
     }
 
     return (
-        <form
-            id="credential-form"
-            className={`credential-form mode-${method}`}
-            method="post"
-        >
+        <form id="credential-form" className={`credential-form mode-${method}`}>
             {/*All input elements are disabled unless edit mode is enabled to allow viewing but not editing */}
             <div className="form-inputs container">
                 {/*Hide the Company and Provider fields unless edit mode is enabled*/}
@@ -240,7 +242,13 @@ export default function CredentialForm({
             </div>
             {editMode && (
                 <div className="credential-edit-actions container">
-                    <button className="btn save-btn" onClick={saveChanges}>
+                    <button
+                        className="btn save-btn"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            saveChanges();
+                        }}
+                    >
                         Save changes
                     </button>
                     <button
