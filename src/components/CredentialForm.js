@@ -51,8 +51,22 @@ export default function CredentialForm({
 
     //disable or re-enable the fields in teh form if edit mode is enabled/disabled
     useEffect(() => {
+        if (hideTimeoutRef.current) {
+            clearTimeout(hideTimeoutRef.current);
+            hideTimeoutRef.current = null;
+        }
+
+        if (editMode) {
+            showPassword(credentialID, false);
+        } else {
+            hidePassword();
+        }
+
+        //fetch the password and add to the password box (don't hide)
+
         const inputElements = document.querySelectorAll(".form-inputs input");
 
+        //enable/disable each field in the form for editing
         inputElements.forEach((element) => {
             if (!element.classList.contains("no-disable")) {
                 if (editMode) {
