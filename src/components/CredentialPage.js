@@ -23,6 +23,7 @@ export default function CredentialPage({
 
     const hideTimeoutRef = useRef(null); // changed: track any hidePassword timeout
 
+    //get the details of the credential when the credential ID from teh URL is updated
     useEffect(() => {
         const fetchCredential = async () => {
             const result = await getFromJSON(
@@ -42,6 +43,7 @@ export default function CredentialPage({
         fetchCredential();
     }, [credentialID]);
 
+    //While the credential hasn't returned yet, show loading
     if (!credential) return <div>Loading...</div>;
 
     function toggleEditMode() {
@@ -63,7 +65,7 @@ export default function CredentialPage({
         setPassword("********");
         setCompany(credential.company);
         setProvider(credential.provider);
-        setSuccessful(credential["login-success"]);
+        setSuccessful(credential["login-successful"]);
         setEditMode(false);
     }
 
@@ -161,7 +163,17 @@ export default function CredentialPage({
                     </p>
                 </div>
             )}
-
+            <CredentialForm
+                editMode={editMode}
+                setEditMode={setEditMode}
+                credential={credential}
+                setCredential={setCredential}
+                method={editMode ? "edit" : "view"}
+                successful={successful}
+                setSuccessful={setSuccessful}
+            />
+            <h2>-----</h2>
+            {/*
             <div className="credential-details">
                 {editMode && (
                     <>
@@ -235,7 +247,7 @@ export default function CredentialPage({
                         Cancel
                     </button>
                 </div>
-            )}
+            )}*/}
         </div>
     );
 }
