@@ -61,7 +61,6 @@ export default function CredentialForm({
                     element.setAttribute("disabled", true);
                 }
             }
-            console.log(element);
         });
         console.log("editMode toggled");
     }, [editMode]);
@@ -143,7 +142,11 @@ export default function CredentialForm({
     }
 
     return (
-        <form id="credential-form" className={`credential-form mode-${method}`}>
+        <form
+            id="credential-form"
+            className={`credential-form mode-${method}`}
+            method="post"
+        >
             {/*All input elements are disabled unless edit mode is enabled to allow viewing but not editing */}
             <div className="form-inputs container">
                 {/*Hide the Company and Provider fields unless edit mode is enabled*/}

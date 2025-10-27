@@ -15,16 +15,16 @@ export default function CredentialPage({
     const [editMode, setEditMode] = useState(false);
 
     // added local input state
-    const [username, setUsername] = useState("");
+    /*const [username, setUsername] = useState("");
     const [password, setPassword] = useState("********");
     const [company, setCompany] = useState("");
-    const [provider, setProvider] = useState("");
+    const [provider, setProvider] = useState("");*/
     const [successful, setSuccessful] = useState(false);
 
     const hideTimeoutRef = useRef(null); // changed: track any hidePassword timeout
 
     //get the details of the credential when the credential ID from teh URL is updated
-    useEffect(() => {
+    /*useEffect(() => {
         const fetchCredential = async () => {
             const result = await getFromJSON(
                 "../DEMO_DATA/CREDENTIALS.json",
@@ -41,7 +41,7 @@ export default function CredentialPage({
             setSuccessful(result?.["login-successful"] ?? false);
         };
         fetchCredential();
-    }, [credentialID]);
+    }, [credentialID]);*/
 
     //While the credential hasn't returned yet, show loading
     if (!credential) return <div>Loading...</div>;
@@ -54,12 +54,12 @@ export default function CredentialPage({
         }
 
         // call showPassword and toggle edit mode after it resolves
-        showPassword(credentialID, false).then(() =>
+        /*showPassword(credentialID, false).then(() =>
             setEditMode((prev) => !prev)
-        );
+        );*/
     }
 
-    function cancelEdit() {
+    /*function cancelEdit() {
         // reset local state to original credential values
         setUsername(credential.username);
         setPassword("********");
@@ -67,9 +67,9 @@ export default function CredentialPage({
         setProvider(credential.provider);
         setSuccessful(credential["login-successful"]);
         setEditMode(false);
-    }
+    }*/
 
-    function saveChanges() {
+    /*function saveChanges() {
         //should issue a save request to backend API
         //for now, just exit edit mode
 
@@ -85,7 +85,7 @@ export default function CredentialPage({
         }));
         console.log("Changes not saved until backend is connected.");
         setEditMode(false);
-    }
+    }*/
 
     function deleteCredential() {
         //should issue a delete request to backend API
@@ -95,7 +95,7 @@ export default function CredentialPage({
     }
 
     // moved inside component so it can set password state
-    async function showPassword(credentialID, autoHide = true) {
+    /*async function showPassword(credentialID, autoHide = true) {
         try {
             const data = await getFromJSON(
                 "../DEMO_DATA/PASSWORDS.json",
@@ -126,7 +126,7 @@ export default function CredentialPage({
             hideTimeoutRef.current = null;
         }
         setPassword("********");
-    }
+    }*/
 
     return (
         <div className="credential-card card container">
